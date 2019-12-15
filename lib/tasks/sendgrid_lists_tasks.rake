@@ -1,4 +1,8 @@
-# desc "Explaining what the task does"
-# task :sendgrid_lists do
-#   # Task goes here
-# end
+require "sendgrid_lists"
+
+task :load do
+  begin
+    Rake::Task["environment"].invoke
+  rescue
+  end
+end
