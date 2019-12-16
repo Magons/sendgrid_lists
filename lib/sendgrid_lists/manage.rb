@@ -44,6 +44,26 @@ module SendgridLists
       puts "Finish!"
     end
 
+    def remove_from_active_list(emails)
+      emails.in_groups_of(100) do |group|
+        contacts = group.compact.join(',')
+        response = @sg.client._("marketing/lists/#{@active_list_id}/contacts").delete(
+          query_params: { contact_ids: contacts }
+        )
+        sleep 1
+      end
+    end
+
+    def remove_from_inactive_list(emails)
+      emails.in_groups_of(100) do |group|
+        contacts = group.compact.join(',')
+        response = @sg.client._("marketing/lists/#{@inactive_list_id}/contacts").delete(
+          query_params: { contact_ids: contacts }
+        )
+        sleep 1
+      end
+    end
+
     private
 
     def add_to_active_list

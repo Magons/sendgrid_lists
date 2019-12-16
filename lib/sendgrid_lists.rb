@@ -36,5 +36,13 @@ module SendgridLists
     def update_active_list(records)
       @manage.update_active_list(records)
     end
+
+    def remove_from_inactive_list(emails)
+      @manage.remove_from_inactive_list(emails)
+    end
+
+    def remove_from_active_list(emails)
+      @manage.remove_from_active_list(emails)
+    end
   end
 end
